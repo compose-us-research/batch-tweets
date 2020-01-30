@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.clasp.json
+appsscript.json
+
+#
+node_modules/
+src/variables.js
+Code.js
+yarn.lock
