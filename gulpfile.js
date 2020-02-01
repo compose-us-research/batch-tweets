@@ -1,5 +1,5 @@
-
 const gulp = require("gulp");
+const run = require("gulp-run");
 const clean = require("gulp-clean");
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
@@ -23,6 +23,10 @@ const CleanIt = () => {
   return gulp.src(tempFile).pipe(clean());
 };
 
+const UpdateIt = () => {
+  return run("claps push");
+};
+
 exports.default = () => {
-  return gulp.watch("./src/*.js", gulp.series(GulpIt, CleanIt));
+  return gulp.watch("./src/*.js", gulp.series(GulpIt, CleanIt, UpdateIt));
 };

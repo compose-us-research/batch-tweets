@@ -1,0 +1,3 @@
+function CalendarPush() {
+  return true;
+}
