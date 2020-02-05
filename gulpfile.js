@@ -1,5 +1,5 @@
 const gulp = require("gulp");
-const run = require("gulp-run");
+const exec = require("child_process").exec;
 const clean = require("gulp-clean");
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
@@ -23,8 +23,22 @@ const CleanIt = () => {
   return gulp.src(tempFile).pipe(clean());
 };
 
-const UpdateIt = () => {
-  return run("clasp push");
+const UpdateIt = cb => {
+  exec("clasp push", (err, stdout, stderr) => {
+    console.log("= clasp: output ==========================\n");
+    
+    if (stdout) {
+      console.log("stdout", stdout);
+    }
+
+    if (stderr) {
+      console.log("stderr", stderr);
+    }
+
+    console.log("==========================================");
+    
+    cb(err); // err should be `null` if everything goes right
+  });
 };
 
 exports.default = () => {
