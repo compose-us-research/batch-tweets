@@ -24,7 +24,7 @@ const CleanIt = () => {
 };
 
 const UpdateIt = () => {
-  return run("claps push");
+  return run("clasp push");
 };
 
 exports.default = () => {
