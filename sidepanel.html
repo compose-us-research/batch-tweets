@@ -201,7 +201,8 @@
         var startTimeFieldValue = startTimeField.value;
         var endTime = getEndTime(startTimeFieldValue, 14); // interval value in minutes
 
-        switcBOOTSTRAPe "S-E":
+        switch (currentMethod) {
+          case "S-E":
             endTimeField.setAttribute("value", endTime);
             endTimeField.setAttribute("min", endTime);
             endTimeField.focus();
