@@ -1,6 +1,14 @@
 function onOpen() {
+  // Add Button
   SpreadsheetApp.getUi()
-    .createMake("Batch Tweets")
-    .addItem("Send to Calendar", "CalendarPush")
+    .createMenu("Batch Tweets")
+    .addItem("Send to Calendar", "showSideBar")
     .addToUi();
+}
+
+function showSideBar() {
+  var sidebarHtml = HtmlService.createHtmlOutputFromFile(
+    "sidepanel.html"
+  ).setTitle("Send to Calendar");
+  SpreadsheetApp.getUi().showSidebar(sidebarHtml);
 }
