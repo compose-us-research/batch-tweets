@@ -1,9 +1,13 @@
 function getTweets() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  return spreadsheet
+  var tweets = spreadsheet
     .getSheetByName("Tweets")
-    .getRange("A1")
+    .getRange(1, 1, 100, 1)
     .getValues();
+
+  return tweets.filter(function(tweet) {
+    return tweet != "";
+  });
 }
 
 function getCalendarId() {
