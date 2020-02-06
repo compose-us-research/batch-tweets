@@ -42,5 +42,5 @@ const UpdateIt = cb => {
 };
 
 exports.default = () => {
-  return gulp.watch("./src/*.js", gulp.series(GulpIt, CleanIt, UpdateIt));
+  return gulp.watch(["./src/*.js","./*.html"], gulp.series(GulpIt, CleanIt, UpdateIt));
 };

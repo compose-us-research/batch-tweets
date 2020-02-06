@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU="
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0.75rem;
+        padding: 0.75rem;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      label {
+        display: block;
+        padding: 1rem;
+      }
+      input,
+      button,
+      select {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0.5rem;
+      }
+      button {
+        width: 42%;
+      }
+      .submitBtn {
+          text-align: right;
+      }
+      .show {
+        display: block;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
+    <script>
+      function serializeForm(form) {
+        return Array.from(new FormData(form).entries()).reduce(
+          (data, [field, value]) => {
+            let [_, prefix, keys] = field.match(/^([^\[]+)((?:\[[^\]]*\])*)/);
+            if (keys) {
+              keys = Array.from(keys.matchAll(/\[([^\]]*)\]/g), m => m[1]);
+              value = update(data[prefix], keys, value);
+            }
+            data[prefix] = value;
+            return data;
+          },
+          {}
+        );
+      }
+
+      function formSubmitHandler(event) {
+        event.preventDefault();
+        var formData = serializeForm(event.target);
+
+        // TODO: Resubmit the data back to the GAS project
+        console.log(formData);
+      }
+
+      function getLocalDateTime(dataObject) {
+        return dataObject.toJSON().substring(0, 19);
+      }
+
+      function getEndTime(startTimeValue, offset) {
+        var seedTime = moment(startTimeValue);
+        var futureDate = seedTime.add(offset, "minutes");
+        var endTimeValue = futureDate.format("Y-MM-DDTHH:mm:ss");
+
+        return endTimeValue;
+      }
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+      integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <form id="form">
+      <label for="interval_type">Interval Type</label>
+      <select id="selector" name="selector">
+        <option disabled selected value> -- select -- </option>
+        <option value="S-E">Start to End</option>
+        <option value="S-I">Interval</option>
+      </select>
+
+      <hr />
+
+      <label for="start_time">
+        Start Time:
+        <input
+          type="datetime-local"
+          name="start_time"
+          id="start_time"
+          disabled
+        />
+      </label>
+      <hr />
+
+      <div class="seInputs hide">
+        <label for="end_time">
+          End Time:
+          <input type="datetime-local" name="end_time" id="end_time" />
+        </label>
+        <hr />
+        <p>In intervals between the <b>start time</b> and <b>end time</b></p>
+      </div>
+
+      <div class="siInputs hide">
+        <label for="interval_value">
+          Interval (in minutes)
+          <input
+            type="number"
+            name="interval_value"
+            id="interval_value"
+            placeholder="14"
+            min="1"
+            max="55"
+          />
+        </label>
+        <hr />
+        <p>From the <b>start time</b>, in <b>intervals</b> of `x` minutes</p>
+      </div>
+
+      <div class="submitBtn">
+        <button type="submit" disabled>Awaiting...</button>
+      </div>
+    </form>
+
+    <script>
+      /** ELEMENT BINDING *********************************************************/
+      // Form element
+      var formElement = document.getElementById("form");
+      formElement.addEventListener("submit", formSubmitHandler);
+
+      // Dropdown selection
+      var selectOptions = document.getElementById("selector");
+      selectOptions.addEventListener("change", selectionChangeHandler);
+
+      // Start time field
+      var startTimeField = document.getElementById("start_time");
+      startTimeField.addEventListener("keydown", event => {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          proceedInForm();
+        }
+      });
+
+      // End time field
+      var endTimeField = document.getElementById("end_time");
+      endTimeField.addEventListener("keydown", event => {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          proceedToSubmit();
+        }
+      });
+
+      // Interval field
+      var intervalField = document.getElementById("interval_value");
+      intervalField.addEventListener("focus", event => {
+        if (!event.target.value) {
+          event.target.setAttribute("value", event.target.placeholder);
+        }
+      });
+      intervalField.addEventListener("keydown", event => {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          proceedToSubmit();
+        }
+      });
+
+      // Current Time
+      var currentTime = moment();
+      var currentMethod = null;
+
+      /** MAGIC *******************************************************************/
+      function selectionChangeHandler(event) {
+        currentMethod = event.target.value;
+
+        var seInputs = document.querySelector(".seInputs");
+        var siInputs = document.querySelector(".siInputs");
+        var stField = document.querySelector("#start_time");
+
+        switch (currentMethod) {
+          case "S-E":
+            stField.removeAttribute("disabled");
+            seInputs.classList.remove("hide");
+            seInputs.classList.add("show");
+            siInputs.classList.add("hide");
+            siInputs.classList.remove("show");
+            break;
+
+          case "S-I":
+            stField.removeAttribute("disabled");
+            seInputs.classList.remove("show");
+            seInputs.classList.add("hide");
+            siInputs.classList.add("show");
+            siInputs.classList.remove("hide");
+            break;
+        }
+      }
+
+      function proceedInForm() {
+        var startTimeFieldValue = startTimeField.value;
+        var endTime = getEndTime(startTimeFieldValue, 14); // interval value in minutes
+
+        switch (currentMethod) {
+          case "S-E":
+            endTimeField.setAttribute("value", endTime);
+            endTimeField.setAttribute("min", endTime);
+            endTimeField.focus();
+            break;
+          case "S-I":
+            intervalField.focus();
+            break;
+        }
+      }
+
+      function proceedToSubmit() {
+        var submitButton = document.querySelector("button[type=submit]");
+        submitButton.innerText = "Ready to Submit";
+        submitButton.removeAttribute("disabled");
+        submitButton.focus();
+      }
+
+      /** BOOTSTRAP ***************************************************************/
+      var startTime = getLocalDateTime(currentTime); // Default should always be current time
+      startTimeField.setAttribute("value", startTime);
+      startTimeField.setAttribute("min", startTime);
+      selectOptions.focus();
+    </script>
+  </body>
+</html>

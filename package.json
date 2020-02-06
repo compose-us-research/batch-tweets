@@ -6,6 +6,7 @@
   "author": "Philip Saa <cowglow@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/google-apps-script": "^1.0.10",
     "gulp": "4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
