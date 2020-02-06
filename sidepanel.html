@@ -28,7 +28,7 @@
         width: 42%;
       }
       .submitBtn {
-          text-align: right;
+        text-align: right;
       }
       .show {
         display: block;
@@ -38,6 +38,20 @@
       }
     </style>
     <script>
+      function getLocalDateTime(dataObject) {
+        return dataObject.toJSON().substring(0, 19);
+      }
+      function formSubmitHandler(event) {
+        event.preventDefault();
+        var formData = serializeForm(event.target);
+        google.script.run.PanelCallback(formData);
+      }
+      function getEndTime(startTimeValue, offset) {
+        var seedTime = moment(startTimeValue);
+        var futureDate = seedTime.add(offset, "minutes");
+        var endTimeValue = futureDate.format("Y-MM-DDTHH:mm:ss");
+        return endTimeValue;
+      }
       function serializeForm(form) {
         return Array.from(new FormData(form).entries()).reduce(
           (data, [field, value]) => {
@@ -51,26 +65,6 @@
           },
           {}
         );
-      }
-
-      function formSubmitHandler(event) {
-        event.preventDefault();
-        var formData = serializeForm(event.target);
-
-        // TODO: Resubmit the data back to the GAS project
-        console.log(formData);
-      }
-
-      function getLocalDateTime(dataObject) {
-        return dataObject.toJSON().substring(0, 19);
-      }
-
-      function getEndTime(startTimeValue, offset) {
-        var seedTime = moment(startTimeValue);
-        var futureDate = seedTime.add(offset, "minutes");
-        var endTimeValue = futureDate.format("Y-MM-DDTHH:mm:ss");
-
-        return endTimeValue;
       }
     </script>
     <script
@@ -87,7 +81,6 @@
         <option value="S-E">Start to End</option>
         <option value="S-I">Interval</option>
       </select>
-
       <hr />
 
       <label for="start_time">
@@ -208,8 +201,7 @@
         var startTimeFieldValue = startTimeField.value;
         var endTime = getEndTime(startTimeFieldValue, 14); // interval value in minutes
 
-        switch (currentMethod) {
-          case "S-E":
+        switcBOOTSTRAPe "S-E":
             endTimeField.setAttribute("value", endTime);
             endTimeField.setAttribute("min", endTime);
             endTimeField.focus();
