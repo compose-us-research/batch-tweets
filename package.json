@@ -15,7 +15,8 @@
     "gulp-uglify": "^3.0.2"
   },
   "scripts": {
-    "watch": "gulp watch",
+    "start": "npm run watch",
+    "watch": "gulp",
     "deploy": "claps push"
   }
 }
