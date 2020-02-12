@@ -1,3 +1,4 @@
+/** Adds the button which is used to trigger the side panel. */
 function onOpen() {
   // Add Button
   SpreadsheetApp.getUi()
@@ -6,6 +7,7 @@ function onOpen() {
     .addToUi();
 }
 
+/** Loads the HTML template for sidebar container. */
 function showSideBar() {
   var sidebarHtml = HtmlService.createHtmlOutputFromFile(
     "sidepanel.html"
