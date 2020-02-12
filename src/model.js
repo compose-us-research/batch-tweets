@@ -1,3 +1,8 @@
+/**
+ * Get Tweets
+ *
+ * @returns {Array} Filtered to remove empty rows the first column of the "Tweets" sheet.
+ */
 function getTweets() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var tweets = spreadsheet
@@ -10,6 +15,11 @@ function getTweets() {
   });
 }
 
+/**
+ * Get Calendar ID
+ *
+ * @returns {String} ID value from cell A1.
+ */
 function getCalendarId() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   return spreadsheet
