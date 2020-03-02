@@ -5,5 +5,7 @@ appsscript.json
 #
 node_modules/
 src/variables.js
-Code.js
+#Code.js
 yarn.lock
+Code.js
+concant.js
