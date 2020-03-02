@@ -1,26 +1,29 @@
 /**
  * QC (Quality Control)
  *
- * @param {String} String
  * @returns {String} Message to reflect tweet character count.
+ * @param str
  */
 function QC(str) {
   var output = str.length <= 180 ? "GOOD" : "TOO LONG";
+
   return str.length > 0 ? output : "EMPTY";
 }
+
+
+
 
 /**
  * Interval timestamp
  *
- * @param {String} timestamp
+ * @param {Date} timestamp
  * @param {Number} time
  * @param {Number} index
- * @returns {String} UTC Timestamp for future tweet.
+ * @returns {Date} UTC Timestamp for future tweet.
  */
-function IntervalTimeStamp(timestamp, time, index) {
+function IntervalTimeStamp({ timestamp, time, index }) {
   var additional = time * index;
   var newTimestamp = new Date(timestamp.getTime() + additional);
-
   var month = [
     "January",
     "February",
@@ -34,14 +37,13 @@ function IntervalTimeStamp(timestamp, time, index) {
     "October",
     "November",
     "December"
-  ].indexOf(newTimestamp.getUTCMonth());
+  ][newTimestamp.getUTCMonth()];
   var date = newTimestamp.getUTCDate();
   var year = newTimestamp.getUTCFullYear();
-
   var hour = newTimestamp.getUTCHours();
   var minutes = newTimestamp.getUTCMinutes();
   var seconds = newTimestamp.getUTCSeconds();
-  var time = hour + ":" + minutes + ":" + seconds + " UTC";
+  var newTime = hour + ":" + minutes + ":" + seconds + " UTC";
 
-  return new Date(month + " " + date + ", " + year + " " + time);
+  return new Date(month + " " + date + ", " + year + " " + newTime);
 }
