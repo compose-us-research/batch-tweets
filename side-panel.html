@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>batch-tweets/side-panel.html</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -49,8 +51,7 @@
       function getEndTime(startTimeValue, offset) {
         var seedTime = moment(startTimeValue);
         var futureDate = seedTime.add(offset, "minutes");
-        var endTimeValue = futureDate.format("Y-MM-DDTHH:mm:ss");
-        return endTimeValue;
+        return futureDate.format("Y-MM-DDTHH:mm:ss");
       }
       function serializeForm(form) {
         return Array.from(new FormData(form).entries()).reduce(
@@ -60,7 +61,7 @@
               keys = Array.from(keys.matchAll(/\[([^\]]*)\]/g), m => m[1]);
               value = update(data[prefix], keys, value);
             }
-            data[prefix] = value;
+            data[prefix] = value !== "" ? value : null;
             return data;
           },
           {}
@@ -75,8 +76,8 @@
   </head>
   <body>
     <form id="form">
-      <label for="interval_type">Interval Type</label>
-      <select id="selector" name="selector">
+      <label for="interval_type">Interval Type </label>
+      <select id="interval_type" name="selector">
         <option disabled selected value> -- select -- </option>
         <option value="S-E">Start to End</option>
         <option value="S-I">Interval</option>
@@ -131,13 +132,13 @@
       formElement.addEventListener("submit", formSubmitHandler);
 
       // Dropdown selection
-      var selectOptions = document.getElementById("selector");
+      var selectOptions = document.getElementById("interval_type");
       selectOptions.addEventListener("change", selectionChangeHandler);
 
       // Start time field
       var startTimeField = document.getElementById("start_time");
       startTimeField.addEventListener("keydown", event => {
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13 || event.keyCode === 9) {
           event.preventDefault();
           proceedInForm();
         }
@@ -145,26 +146,13 @@
 
       // End time field
       var endTimeField = document.getElementById("end_time");
-      endTimeField.addEventListener("keydown", event => {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          proceedToSubmit();
-        }
+      endTimeField.addEventListener("focus", event => {
+        proceedToSubmit();
       });
 
-      // Interval field
+      // // Interval field
       var intervalField = document.getElementById("interval_value");
-      intervalField.addEventListener("focus", event => {
-        if (!event.target.value) {
-          event.target.setAttribute("value", event.target.placeholder);
-        }
-      });
-      intervalField.addEventListener("keydown", event => {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          proceedToSubmit();
-        }
-      });
+      intervalField.addEventListener("blur", proceedToSubmit);
 
       // Current Time
       var currentTime = moment();
