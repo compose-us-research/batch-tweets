@@ -1,6 +1,6 @@
 # Batch Tweets
 
-Google Spreadsheet -> Google Calendar -> (Tweet via Zapier)
+Google Spreadsheet -> Google Calendar -> (Tweet via 3rd Party Automation Service)
 
 ## The code
 
