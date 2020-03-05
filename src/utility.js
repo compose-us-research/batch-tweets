@@ -10,9 +10,6 @@ function QC(str) {
   return str.length > 0 ? output : "EMPTY";
 }
 
-
-
-
 /**
  * Interval timestamp
  *
@@ -21,7 +18,7 @@ function QC(str) {
  * @param {Number} index
  * @returns {Date} UTC Timestamp for future tweet.
  */
-function IntervalTimeStamp({ timestamp, time, index }) {
+function IntervalTimeStamp(timestamp, time, index) {
   var additional = time * index;
   var newTimestamp = new Date(timestamp.getTime() + additional);
   var month = [
