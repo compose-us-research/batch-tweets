@@ -10,6 +10,7 @@ function QC(str) {
   return str.length > 0 ? output : "EMPTY";
 }
 
+
 /**
  * Interval timestamp
  *
