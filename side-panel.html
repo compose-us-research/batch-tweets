@@ -38,7 +38,15 @@
     </style>
     <script>
       function mockTimeIntervals(startTime, endTime, division) {
+        var start = new Date(startTime);
+        var end = new Date(endTime);
+        var duration = (end.getTime() - start.getTime()) / (1000*60);
+        var interval = duration / division;
         console.log("= Mock Time Interval ==========================");
+        console.log("= [ start    ]:", start);
+        console.log("= [ end      ]:", end);
+        console.log("= [ duration ]:", duration);
+        console.log("= [ interval ]:", interval);
         console.log("===============================================");
       }
 
