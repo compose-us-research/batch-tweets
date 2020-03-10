@@ -9,40 +9,45 @@ function QC(str) {
   return str.length > 0 ? output : "EMPTY";
 }
 
-
 /**
  * Interval timestamp
  *
  * @param {Date} timestamp
- * @param {Number} time
+ * @param {Number} interval
  * @param {Number} index
  * @returns {Date} UTC Timestamp for future tweet.
  */
-function IntervalTimeStamp(timestamp, time, index) {
-  var additional = time * index;
-  var initialTimeStamp = new Date(timestamp);
-  Logger.log(initialTimeStamp)
-  var newTimestamp = new Date(initialTimeStamp.getTime() + additional);
-  var month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ][newTimestamp.getUTCMonth()];
-  var date = newTimestamp.getUTCDate();
-  var year = newTimestamp.getUTCFullYear();
-  var hour = newTimestamp.getUTCHours();
-  var minutes = newTimestamp.getUTCMinutes();
-  var seconds = newTimestamp.getUTCSeconds();
-  var newTime = hour + ":" + minutes + ":" + seconds + " UTC";
+function IntervalTimeStamp(timestamp, interval, index) {
+  var timeInterval = interval * index;
+  var newTimestamp = new Date(timestamp.getTime() + timeInterval);
 
-  return new Date(month + " " + date + ", " + year + " " + newTime);
+  return newTimestamp;
+
+  //   var additional = time * index;
+  //   var initialTimeStamp = new Date(timestamp);
+  //   var newTimestamp = new Date(initialTimeStamp.getTime() + additional);
+  //   var month = [
+  //     "January",
+  //     "February",
+  //     "March",
+  //     "April",
+  //     "May",
+  //     "June",
+  //     "July",
+  //     "August",
+  //     "September",
+  //     "October",
+  //     "November",
+  //     "December"
+  //   ][newTimestamp.getUTCMonth()];
+  //   var date = newTimestamp.getUTCDate();
+  //   var year = newTimestamp.getUTCFullYear();
+  //   var hour = newTimestamp.getUTCHours();
+  //   var minutes = newTimestamp.getUTCMinutes();
+  //   var seconds = newTimestamp.getUTCSeconds();
+  //   var newTime = hour + ":" + minutes + ":" + seconds + " UTC";
+  //
+  //   return new Date(month + " " + date + ", " + year + " " + newTime);
 }
+
+module.exports = IntervalTimeStamp;

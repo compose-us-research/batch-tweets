@@ -18,5 +18,8 @@
     "start": "npm run watch",
     "watch": "gulp",
     "deploy": "claps push"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }

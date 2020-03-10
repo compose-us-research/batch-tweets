@@ -49,7 +49,7 @@ function PanelCallback(data) {
   // Load the tweets
   var tweets = getTweets();
 
-  // Minimun date and time to start tweets.
+  // Minimum date and time to start tweets.
   var startTime = new Date(data.start_time);
 
   // Max date and time for the tweets to end.
