@@ -6,7 +6,6 @@
  */
 function QC(str) {
   var output = str.length <= 180 ? "GOOD" : "TOO LONG";
-
   return str.length > 0 ? output : "EMPTY";
 }
 
@@ -21,7 +20,9 @@ function QC(str) {
  */
 function IntervalTimeStamp(timestamp, time, index) {
   var additional = time * index;
-  var newTimestamp = new Date(timestamp.getTime() + additional);
+  var initialTimeStamp = new Date(timestamp);
+  Logger.log(initialTimeStamp)
+  var newTimestamp = new Date(initialTimeStamp.getTime() + additional);
   var month = [
     "January",
     "February",

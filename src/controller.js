@@ -60,7 +60,7 @@ function PanelCallback(data) {
 
   // Updates the interval based on the range from start to finish.
   if (data.selector === "S-E") {
-    var diff = Math.abs(endTime.getTime() - startTime.getTime()) / tweets.length;
+    var diff = Math.abs(endTime - startTime) / tweets.length;
     interval = Math.floor(diff / 60000);
   }
 
