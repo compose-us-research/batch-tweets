@@ -6,7 +6,6 @@
  */
 function QC(str) {
   var output = str.length <= 180 ? "GOOD" : "TOO LONG";
-
   return str.length > 0 ? output : "EMPTY";
 }
 
@@ -15,13 +14,13 @@ function QC(str) {
  * Interval timestamp
  *
  * @param {Date} timestamp
- * @param {Number} time
+ * @param {Number} interval
  * @param {Number} index
  * @returns {Date} UTC Timestamp for future tweet.
  */
-function IntervalTimeStamp(timestamp, time, index) {
-  var additional = time * index;
-  var newTimestamp = new Date(timestamp.getTime() + additional);
+function IntervalTimeStamp(timestamp, interval, index) {
+  var timeInterval = interval * index;
+  var newTimestamp = new Date(timestamp.getTime() + timeInterval);
   var month = [
     "January",
     "February",

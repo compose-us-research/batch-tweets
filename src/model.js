@@ -24,6 +24,8 @@ function getTweets() {
     .getValues();
 
   return tweets.filter(function(tweet) {
-    return tweet != "";
+    if (tweet[0] !== "") {
+      return tweet[0];
+    }
   });
 }

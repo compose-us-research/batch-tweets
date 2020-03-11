@@ -37,17 +37,11 @@
       }
     </style>
     <script>
-      function mockTimeIntervals(startTime, endTime, division) {
-        console.log("= Mock Time Interval ==========================");
-        console.log("===============================================");
-      }
-
       function formSubmitHandler(event) {
         event.preventDefault();
         var formData = serializeForm(event.target);
-        // console.log(formData)
-        mockTimeIntervals(formData.start_time, formData.end_time, 5);
-        // google.script.run.PanelCallback(formData);
+        // console.log(formData);
+        google.script.run.PanelCallback(formData);
       }
       function getEndTime(startTimeValue, offset) {
         var seedTime = moment(startTimeValue);
@@ -112,15 +106,10 @@
       </div>
 
       <div class="submitBtn">
-        <button type="submit">Submit</button>
+        <button type="submit" disabled>Submit</button>
       </div>
     </form>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
-      integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
-      crossorigin="anonymous"
-    ></script>
     <script>
       /** ELEMENT BINDING *********************************************************/
       // Form element
@@ -131,26 +120,30 @@
       var selectOptions = document.getElementById("interval_type");
       selectOptions.addEventListener("change", selectionChangeHandler);
 
+      // Form method
+      var currentMethod = null;
+
       // Start time field
       var startTimeField = document.getElementById("start_time");
 
       // End time field
       var endTimeField = document.getElementById("end_time");
 
-      // // Interval field
+      // Interval field
+      var defaultInterval = 14;
       var intervalField = document.getElementById("interval_value");
 
       // Current Time
-      var currentTime = moment().format(moment.HTML5_FMT.DATETIME_LOCAL);
-      var futureTime = moment()
-        .add(14, "m")
-        .format(moment.HTML5_FMT.DATETIME_LOCAL);
-      var currentMethod = null;
+      var currentDate = new Date();
+      var currentTime = getHtml5Format(currentDate);
+      var futureTime = getHtml5Format(
+        new Date(currentDate.getTime() + defaultInterval * 60000)
+      );
 
       /** MAGIC *******************************************************************/
       function selectionChangeHandler(event) {
         currentMethod = event.target.value;
-
+        var submitButton = document.querySelector("button");
         var seInputs = document.querySelector(".seInputs");
         var siInputs = document.querySelector(".siInputs");
 
@@ -171,9 +164,22 @@
             siInputs.classList.remove("hide");
             break;
         }
+
+        submitButton.removeAttribute("disabled");
+      }
+
+      function getHtml5Format(date) {
+        var output = "";
+        output += date.getFullYear() + "-";
+        output += ("0" + (date.getMonth() + 1)).slice(-2) + "-";
+        output += ("0" + date.getDate()).slice(-2) + "T";
+        output += ("0" + date.getHours()).slice(-2) + ":";
+        output += ("0" + date.getMinutes()).slice(-2);
+        return output;
       }
 
       /** BOOTSTRAP ***************************************************************/
+      intervalField.setAttribute("value", defaultInterval.toString());
       startTimeField.setAttribute("value", currentTime);
       endTimeField.setAttribute("value", futureTime);
       selectOptions.focus();
