@@ -15,7 +15,7 @@ const GulpIt = () => {
     .pipe(concat(tempFile))
     .pipe(gulp.dest("."))
     .pipe(rename(destFile))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest("."));
 };
 

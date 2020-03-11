@@ -44,14 +44,13 @@ function PanelCallback(data) {
  * @param {Number} interval
  */
 function CalendarPush(tweets, startTime, interval) {
-  Logger.log(Math.floor(interval))
   // Calendar object from ID
   var Calendar = CalendarApp.getCalendarById(CalendarId);
 
   // Loop the process for each tweet.
   for (var i = 0; i < tweets.length; ++i) {
     // Timestamp interval value.
-    const timestamp = IntervalTimeStamp(startTime, interval * 60 * 1000, i + 1);
+    var timestamp = IntervalTimeStamp(startTime, interval * 60 * 1000, i + 1);
 
     // Create the Calendar Event
     var event = Calendar.createEvent(tweets[i], timestamp, timestamp);
