@@ -17,7 +17,8 @@
   "scripts": {
     "start": "npm run watch",
     "watch": "gulp",
-    "deploy": "claps push"
+    "deploy": "claps push",
+    "test": "jest --verbose true"
   },
   "devDependencies": {
     "jest": "^25.1.0"
