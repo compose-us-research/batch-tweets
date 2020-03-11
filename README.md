@@ -6,6 +6,8 @@ Google Spreadsheet -> Google Calendar -> (Tweet via 3rd Party Automation Service
 
 ```bash
 Clone it, Gulp It, Add it to your Spreadsheet.
+or
+Copy the Code.js file to your Spreadsheet's bundled script and add the `side-panel.html`
 ```
 
 ## The Spreadsheet
