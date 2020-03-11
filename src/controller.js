@@ -1,40 +1,6 @@
 var CalendarId = getCalendarId();
 
 /**
- * Calendar Push
- *
- * Creates calendar event for each tweet with offset timestamp
- *
- * @param {Array} tweets
- * @param {Date} startTime
- * @param {Number} interval
- */
-function CalendarPush(tweets, startTime, interval) {
-  // Calendar object from ID
-  var Calendar = CalendarApp.getCalendarById(CalendarId);
-
-  // Loop the process for each tweet.
-  for (var i = 0; i < tweets.length; ++i) {
-    // Convert tweet to string.
-    var tweet = String(tweets[i]);
-
-    // Timestamp interval value.
-    var timestamp = IntervalTimeStamp({
-      timestamp: startTime,
-      time: interval,
-      index: i + 1
-    });
-
-    // Create the Calendar Event
-    var event = Calendar.createEvent(tweet, timestamp, timestamp);
-    Logger.log(event.getId());
-  }
-
-  var ui = SpreadsheetApp.getUi();
-  ui.alert("Done!");
-}
-
-/**
  * Panel Callback
  *
  * Receives data from side panel form.
@@ -56,13 +22,42 @@ function PanelCallback(data) {
   var endTime = new Date(data.end_time);
 
   // Interval duration in minutes.
-  var interval = Math.floor(data.interval_value * 60000);
+  var interval = Math.floor(data.interval_value);
 
+  var diff = null;
   // Updates the interval based on the range from start to finish.
   if (data.selector === "S-E") {
-    var diff = Math.abs(endTime - startTime) / tweets.length;
+    diff = Math.abs(endTime - startTime) / tweets.length;
     interval = Math.floor(diff / 60000);
   }
 
   CalendarPush(tweets, startTime, interval);
+}
+
+/**
+ * Calendar Push
+ *
+ * Creates calendar event for each tweet with offset timestamp
+ *
+ * @param {Array} tweets
+ * @param {Date} startTime
+ * @param {Number} interval
+ */
+function CalendarPush(tweets, startTime, interval) {
+  Logger.log(Math.floor(interval))
+  // Calendar object from ID
+  var Calendar = CalendarApp.getCalendarById(CalendarId);
+
+  // Loop the process for each tweet.
+  for (var i = 0; i < tweets.length; ++i) {
+    // Timestamp interval value.
+    const timestamp = IntervalTimeStamp(startTime, interval * 60 * 1000, i + 1);
+
+    // Create the Calendar Event
+    var event = Calendar.createEvent(tweets[i], timestamp, timestamp);
+    Logger.log(event.getId());
+  }
+
+  var ui = SpreadsheetApp.getUi();
+  ui.alert("Done!");
 }

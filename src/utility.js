@@ -20,34 +20,26 @@ function QC(str) {
 function IntervalTimeStamp(timestamp, interval, index) {
   var timeInterval = interval * index;
   var newTimestamp = new Date(timestamp.getTime() + timeInterval);
+  var month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ][newTimestamp.getUTCMonth()];
+  var date = newTimestamp.getUTCDate();
+  var year = newTimestamp.getUTCFullYear();
+  var hour = newTimestamp.getUTCHours();
+  var minutes = newTimestamp.getUTCMinutes();
+  var seconds = newTimestamp.getUTCSeconds();
+  var newTime = hour + ":" + minutes + ":" + seconds + " UTC";
 
-  return newTimestamp;
-
-  //   var additional = time * index;
-  //   var initialTimeStamp = new Date(timestamp);
-  //   var newTimestamp = new Date(initialTimeStamp.getTime() + additional);
-  //   var month = [
-  //     "January",
-  //     "February",
-  //     "March",
-  //     "April",
-  //     "May",
-  //     "June",
-  //     "July",
-  //     "August",
-  //     "September",
-  //     "October",
-  //     "November",
-  //     "December"
-  //   ][newTimestamp.getUTCMonth()];
-  //   var date = newTimestamp.getUTCDate();
-  //   var year = newTimestamp.getUTCFullYear();
-  //   var hour = newTimestamp.getUTCHours();
-  //   var minutes = newTimestamp.getUTCMinutes();
-  //   var seconds = newTimestamp.getUTCSeconds();
-  //   var newTime = hour + ":" + minutes + ":" + seconds + " UTC";
-  //
-  //   return new Date(month + " " + date + ", " + year + " " + newTime);
+  return new Date(month + " " + date + ", " + year + " " + newTime);
 }
-
-module.exports = IntervalTimeStamp;
