@@ -9,20 +9,17 @@ function QC(str) {
   return str.length > 0 ? output : "EMPTY";
 }
 
-
 /**
  * Interval timestamp
  *
  * @param {Date} timestamp
- * @param {Number} time
+ * @param {Number} interval
  * @param {Number} index
  * @returns {Date} UTC Timestamp for future tweet.
  */
-function IntervalTimeStamp(timestamp, time, index) {
-  var additional = time * index;
-  var initialTimeStamp = new Date(timestamp);
-  Logger.log(initialTimeStamp)
-  var newTimestamp = new Date(initialTimeStamp.getTime() + additional);
+function IntervalTimeStamp(timestamp, interval, index) {
+  var timeInterval = interval * index;
+  var newTimestamp = new Date(timestamp.getTime() + timeInterval);
   var month = [
     "January",
     "February",

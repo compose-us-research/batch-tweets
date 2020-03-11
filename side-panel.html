@@ -62,16 +62,6 @@
           {}
         );
       }
-
-      function getHtml5Format(date) {
-        var output = "";
-        output += date.getFullYear() + "-";
-        output += ("0" + (date.getMonth() + 1)).slice(-2) + "-";
-        output += ("0" + date.getDate()).slice(-2) + "T";
-        output += ("0" + date.getHours()).slice(-2) + ":";
-        output += ("0" + date.getMinutes()).slice(-2);
-        return output;
-      }
     </script>
   </head>
   <body>
@@ -176,6 +166,16 @@
         }
 
         submitButton.removeAttribute("disabled");
+      }
+
+      function getHtml5Format(date) {
+        var output = "";
+        output += date.getFullYear() + "-";
+        output += ("0" + (date.getMonth() + 1)).slice(-2) + "-";
+        output += ("0" + date.getDate()).slice(-2) + "T";
+        output += ("0" + date.getHours()).slice(-2) + ":";
+        output += ("0" + date.getMinutes()).slice(-2);
+        return output;
       }
 
       /** BOOTSTRAP ***************************************************************/
