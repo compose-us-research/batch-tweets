@@ -1,25 +1,57 @@
-# Batch Tweets
+# This is the automation flow
+Google Spreadsheet --> Google Calendar -->Tweet via 3rd Party Automation Service like Zapier --> Twitter
 
-Google Spreadsheet -> Google Calendar -> (Tweet via 3rd Party Automation Service)
+# What it does
+It puts your tweets from a Google spreadsheet into a calendar and from there it’s posted to twitter via a zapier integration.
 
-## The code
+# Why is this cool 
+To stay relevant, Gary V quote
 
-```bash
-Clone it, Gulp It, Add it to your Spreadsheet.
-or
-Copy the Code.js file to your Spreadsheet's bundled script and add the `side-panel.html`
-```
+# You need this to do it
+1. Google Suite user account
+2. Google Calendar
+3. Google Spreadsheet
+4. Twitter Account
+3rd Party Automation Account, we use Zapier but there are others
 
-## The Spreadsheet
+# Steps
+1. Create a Google Calendar and name it “batch tweets”
 
-Your spreadsheet needs to have three tabs.
+__Image: Google Kalender Einstellungen__
 
-```
-Tweets / Archive / Calendar ID
-```
+2. Click the 3 dots and select “Einstellungen und Freigabe”
+3. Scroll down and copy calendar ID, store in your preferred editor
+4. Create a Google spreadsheet with 3 tabs. Name them: tweets, archive, calendarID)
+5. Add formula in column B: =QC(A1). Then apply formula to 20 fields
+6. Go to tab 3 and paste calendar ID into 3rd tab of your Google spreadsheet.
 
-Place your calendar's ID on the first cell of the Calendar ID tab.
-Archive you can use to save our ideas,
+__Image: Google Kalender ID__
+
+7. In your spreadsheet menu go to Tools and open Script editor
+
+__Image: Open Google Script Editor__
+
+8. Copy and paste script for Google Apps script from Github. It’s two pieces: side panel + code
+Link
+__Image: Google Script 2 parts__
+
+9. Go back to your Google spreadsheet, you should see a extra button named “Batch Tweets” in your navigation panel.
+
+__Image: Google Sheets Extra Button__
+
+10. Click on it. This activates the script. An extra side panel opens. 
+
+__Image: Google Sheets Side Panel__
+
+11. Select what you need and press submit. 
+12. This is it if you see this:
+
+__Image: Google Sheets Script Success__
+
+13. Create a Zapier automation: Google Calendar to Twitter
+14. Create Tweets
+
+__Congrats, you automated your twittering with Google Apps Script.__
 
 ## License
 
