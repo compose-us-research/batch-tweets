@@ -4,7 +4,7 @@ Google Spreadsheet --> Google Calendar -->Tweet via 3rd Party Automation Service
 # What it does
 It puts your tweets from a Google spreadsheet into a calendar and from there it’s posted to twitter via a zapier integration.
 
-# Why is this cool 
+# Why this is cool 
 To stay relevant, Gary V quote
 
 # You need this to do it
