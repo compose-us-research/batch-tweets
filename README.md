@@ -1,20 +1,20 @@
-# This is the automation flow
+# This is the automation flow ⚙️
 Google Spreadsheet --> Google Calendar -->Tweet via 3rd Party Automation Service like Zapier --> Twitter
 
-# What it does
+# What it does 🦾
 It puts your tweets from a Google spreadsheet into a calendar and from there it’s posted to Twitter via a Zapier integration.
 
-# Why this is cool 
-To stay relevant, Gary V quote
+# Why this is 🆒
+According to @garyvee those wanting to dominate the social media game, need to be putting out about 100 pieces of content per day😱 - ain't nobody got time for that! With this Google App Script you can batch process the workflow.
 
-# You need this to do it
+# You need this to do it arrow 🧰
 1. Google Suite user account
 2. Google Calendar
 3. Google Spreadsheet
 4. Twitter Account
 5. 3rd Party Automation Account, we use Zapier but there are others
 
-# Steps
+# Steps 👟
 1. Create a Google Calendar and name it “batch tweets”
 
 ![alt text][GoogleKalenderEinstellungen]
