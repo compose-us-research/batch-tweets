@@ -7,7 +7,7 @@ It puts your tweets from a Google spreadsheet into a calendar and from there it�
 # Why this is 🆒
 According to @garyvee those wanting to dominate the social media game, need to be putting out about 100 pieces of content per day😱 - ain't nobody got time for that! With this Google App Script you can batch process the workflow.
 
-# You need this to do it arrow 🧰
+# You need this to do it 🧰
 1. Google Suite user account
 2. Google Calendar
 3. Google Spreadsheet
