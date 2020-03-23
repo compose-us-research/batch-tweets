@@ -21,9 +21,9 @@ According to @garyvee those wanting to dominate the social media game, need to b
 
 2. Click the 3 dots and select “Einstellungen und Freigabe”
 3. Scroll down and copy calendar ID, store in your preferred editor
-4. Create a Google spreadsheet with 3 tabs. Name them: tweets, archive, calendarID)
+4. Create a Google spreadsheet with 3 tabs. Name them: tweets, archive, calendarID
 5. Add formula in column B: =QC(A1). Then apply formula to 20 fields
-6. Go to tab 3 and paste calendar ID into 3rd tab of your Google spreadsheet.
+6. Go to tab 3 and paste calendar ID into A1 of your Google spreadsheet.
 
 ![alt text][GoogleKalenderID]
 
