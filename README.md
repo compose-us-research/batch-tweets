@@ -38,23 +38,23 @@ According to @garyvee those wanting to dominate the social media game, need to b
 
 ![alt text][GoogleScript2parts]
 
-9. Go back to your Google spreadsheet, you should see a extra button named “Batch Tweets” in your navigation panel.
+9. Go back to your Google spreadsheet, you should see a custom button named “Batch Tweets” in your navigation panel.
 
 ![alt text][GoogleSheetsExtraButton]
 
-10. Click on it. This activates the script. An extra side panel opens. 
+10. Click on it. This activates the script. A custom side panel opens. 
 
 ![alt text][GoogleSheetsSidePanel]
 
 11. Select what you need and press submit. 
 
-12. This is it if you see this:
+12. You're done when you see this:
 
 ![alt text][GoogleSheetsScriptSuccess]
 
 13. Create a Zapier automation: Google Calendar to Twitter
 
-14. Create Tweets
+14. Create Tweets in your Google spreadsheet
 
 __Congrats, you automated your twittering with Google Apps Script.__
 
