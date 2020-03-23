@@ -17,7 +17,7 @@ To stay relevant, Gary V quote
 # Steps
 1. Create a Google Calendar and name it “batch tweets”
 
-__Image: Google Kalender Einstellungen__
+![alt text][GoogleKalenderEinstellungen]
 
 2. Click the 3 dots and select “Einstellungen und Freigabe”
 3. Scroll down and copy calendar ID, store in your preferred editor
@@ -25,30 +25,35 @@ __Image: Google Kalender Einstellungen__
 5. Add formula in column B: =QC(A1). Then apply formula to 20 fields
 6. Go to tab 3 and paste calendar ID into 3rd tab of your Google spreadsheet.
 
-__Image: Google Kalender ID__
+![alt text][GoogleKalenderID]
 
 7. In your spreadsheet menu go to Tools and open Script editor
 
-__Image: Open Google Script Editor__
+![alt text][OpenGoogleScriptEditor]
 
-8. Copy and paste script for Google Apps script from Github. It’s two pieces: side panel + code
-Link
-__Image: Google Script 2 parts__
+8. Copy and paste script for Google Apps script from Github. It’s two scripts: side panel + code
+
+- [Code Google Script](./Code.js)
+- [Side Panel html](./side-panel.html)
+
+![alt text][GoogleScript2parts]
 
 9. Go back to your Google spreadsheet, you should see a extra button named “Batch Tweets” in your navigation panel.
 
-__Image: Google Sheets Extra Button__
+![alt text][GoogleSheetsExtraButton]
 
 10. Click on it. This activates the script. An extra side panel opens. 
 
-__Image: Google Sheets Side Panel__
+![alt text][GoogleSheetsSidePanel]
 
 11. Select what you need and press submit. 
+
 12. This is it if you see this:
 
-__Image: Google Sheets Script Success__
+![alt text][GoogleSheetsScriptSuccess]
 
 13. Create a Zapier automation: Google Calendar to Twitter
+
 14. Create Tweets
 
 __Congrats, you automated your twittering with Google Apps Script.__
@@ -56,3 +61,11 @@ __Congrats, you automated your twittering with Google Apps Script.__
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+[GoogleKalenderEinstellungen]: ./PNG/Google_Kalender_Einstellungen.png "Google Kalender Einstellungen"
+[GoogleKalenderID]: ./PNG/Google_Kalender_ID.png "Google Kalender ID"
+[GoogleScript2parts]: ./PNG/Google_Script_2_parts.png "Google Script 2 scripts"
+[GoogleSheetsExtraButton]: ./PNG/Google_Sheets_Extra_Button.png "Google Sheets Custom Button"
+[GoogleSheetsScriptSuccess]: ./PNG/Google_Sheets_Script_Success.png "Google Sheets Script Success"
+[GoogleSheetsSidePanel]: ./PNG/Google_Sheets_Side_Panel.png "Google Sheets Side Panel"
+[OpenGoogleScriptEditor]: ./PNG/Open_Google_Script_Editor.png "Open Google Script Editor"
