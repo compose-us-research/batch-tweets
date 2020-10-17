@@ -23,10 +23,10 @@ const CleanIt = () => {
   return gulp.src(tempFile).pipe(clean());
 };
 
-const UpdateIt = cb => {
+const UpdateIt = (cb) => {
   exec("clasp push", (err, stdout, stderr) => {
     console.log("= clasp: output ==========================\n");
-    
+
     if (stdout) {
       console.log("stdout", stdout);
     }
@@ -36,11 +36,12 @@ const UpdateIt = cb => {
     }
 
     console.log("==========================================");
-    
+
     cb(err); // err should be `null` if everything goes right
   });
 };
 
 exports.default = () => {
-  return gulp.watch(["./src/*.js","./*.html"], gulp.series(GulpIt, CleanIt, UpdateIt));
+  // return gulp.watch(["./src/*.js","./*.html"], gulp.series(GulpIt, CleanIt, UpdateIt));
+  return gulp.watch(["./src/*.js", "./*.html"], gulp.series(GulpIt, CleanIt));
 };
