@@ -40,8 +40,7 @@
       function formSubmitHandler(event) {
         event.preventDefault();
         var formData = serializeForm(event.target);
-        // console.log(formData);
-        google.script.run.PanelCallback(formData);
+        google.script.run.PanelCallback(formData).then(() => console.log('done'));
       }
       function getEndTime(startTimeValue, offset) {
         var seedTime = moment(startTimeValue);
@@ -68,7 +67,7 @@
     <form id="form">
       <label for="interval_type">Interval Type </label>
       <select id="interval_type" name="selector">
-        <option disabled selected value> -- select -- </option>
+        <option disabled selected value>-- select --</option>
         <option value="S-E">Start to End</option>
         <option value="S-I">Interval</option>
       </select>
